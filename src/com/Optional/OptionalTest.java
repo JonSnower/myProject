@@ -5,10 +5,10 @@ import java.util.Optional;
 public class OptionalTest {
 	public static void main(String[] args) {
 
-		// ÕâÊÇÒ»¸ö¿ÉÒÔÎªnullµÄÈİÆ÷¶ÔÏó¡£Èç¹ûÖµ´æÔÚÔòisPresent()·½·¨»á·µ»Øtrue£¬µ÷ÓÃget()·½·¨»á·µ»Ø¸Ã¶ÔÏó¡£
+		// è¿™æ˜¯ä¸€ä¸ªå¯ä»¥ä¸ºnullçš„å®¹å™¨å¯¹è±¡ã€‚å¦‚æœå€¼å­˜åœ¨åˆ™isPresent()æ–¹æ³•ä¼šè¿”å›trueï¼Œè°ƒç”¨get()æ–¹æ³•ä¼šè¿”å›è¯¥å¯¹è±¡ã€‚
 
 		// Optional<User> emptyOpt = Optional.empty();
-		// emptyOpt.get(); //³¢ÊÔ·ÃÎÊ emptyOpt ±äÁ¿µÄÖµ»áµ¼ÖÂ NoSuchElementException
+		// emptyOpt.get(); //å°è¯•è®¿é—® emptyOpt å˜é‡çš„å€¼ä¼šå¯¼è‡´ NoSuchElementException
 
 		User user = null;
 
