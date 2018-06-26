@@ -21,31 +21,31 @@ public class PersonTest {
 		list.add(p1);
 		list.add(p2);
 
-		// ÅÅĞòÇ°
+		// æ’åºå‰
 		list.forEach(item -> System.out.println(((Person) item).getName()));
 
-		// ÅÅĞò
+		// æ’åº
 		//Collections.sort(list, byName);
-		// »ò
+		// æˆ–
 		list.sort(byName);
 		
-		// ÅÅĞòºó
+		// æ’åºå
 		list.forEach(item -> System.out.println(((Person) item).getName()));
 		
 		/**
-		µÚÒ»²½£ºÈ¥µôÈßÓàµÄÄäÃûÀà
+		ç¬¬ä¸€æ­¥ï¼šå»æ‰å†—ä½™çš„åŒ¿åç±»
 		Collections.sort(peoples,(Person x, Person y) -> x.getLastName().compareTo(y.getLastName()));
 
-		µÚ¶ş²½£ºÊ¹ÓÃComparatorÀïµÄcomparing·½·¨
+		ç¬¬äºŒæ­¥ï¼šä½¿ç”¨Comparatoré‡Œçš„comparingæ–¹æ³•
 		Collections.sort(peoples, Comparator.comparing((Person p) -> p.getLastName()));
 
-		µÚÈı²½£ºÀàĞÍÍÆµ¼ºÍ¾²Ì¬µ¼Èë
+		ç¬¬ä¸‰æ­¥ï¼šç±»å‹æ¨å¯¼å’Œé™æ€å¯¼å…¥
 		Collections.sort(peoples, comparing(p -> p.getLastName()));
 
-		µÚËÄ²½£º·½·¨ÒıÓÃ , Ë«Ã°ºÅÔËËã¾ÍÊÇJavaÖĞµÄ[·½·¨ÒıÓÃ],ºóÃæÃ»ÓĞÀ¨ºÅ¡°()¡±
+		ç¬¬å››æ­¥ï¼šæ–¹æ³•å¼•ç”¨ , åŒå†’å·è¿ç®—å°±æ˜¯Javaä¸­çš„[æ–¹æ³•å¼•ç”¨],åé¢æ²¡æœ‰æ‹¬å·â€œ()â€
 		Collections.sort(peoples, comparing(Person::getLastName));
 
-		µÚÎå²½£ºÊ¹ÓÃList±¾ÉíµÄsort¸üÓÅ
+		ç¬¬äº”æ­¥ï¼šä½¿ç”¨Listæœ¬èº«çš„sortæ›´ä¼˜
 		peoples.sort(comparing(Person::getLastName));;
 		*/
 	}

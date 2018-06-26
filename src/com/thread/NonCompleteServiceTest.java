@@ -14,7 +14,7 @@ public class NonCompleteServiceTest {
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
 		Future<String>[] futures = new FutureTask[10];
 		/**
-		 * ����һ���������ģ�ⲻͬ������Ĵ���ʱ�䲻ͬ
+		 * 产生一个随机数，模拟不同的任务的处理时间不同
 		 */
 		for (int i = 0; i < 10; i++) {
 			futures[i] = executorService.submit(new Callable<String>() {
@@ -34,10 +34,10 @@ public class NonCompleteServiceTest {
 		}
 
 		/**
-		 * ��ȡ���ʱ���������û����ɣ�������,��˳���ȡ���ʱ�� ���ܱ�������Ѿ���ɣ���ȻЧ�ʲ���
+		 * 获取结果时，如果任务没有完成，则阻塞,在顺序获取结果时， 可能别的任务已经完成，显然效率不高
 		 */
 		for (int i = 0; i < futures.length; i++) {
-			System.out.println("�����" + futures[i].get());
+			System.out.println("结果：" + futures[i].get());
 		}
 		executorService.shutdown();
 	}

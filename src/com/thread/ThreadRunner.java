@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Ïß³ÌÔËĞĞdemo£¬ÔËĞĞÊ±´ò³öÏß³ÌidÒÔ¼°´«ÈëÏß³ÌÖĞ²ÎÊı
+ * çº¿ç¨‹è¿è¡Œdemoï¼Œè¿è¡Œæ—¶æ‰“å‡ºçº¿ç¨‹idä»¥åŠä¼ å…¥çº¿ç¨‹ä¸­å‚æ•°
  */
 public class ThreadRunner implements Runnable {
 
 	private final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
 
 	/**
-	 * Ïß³ÌË½ÓĞÊôĞÔ£¬´´½¨Ïß³ÌÊ±´´½¨
+	 * çº¿ç¨‹ç§æœ‰å±æ€§ï¼Œåˆ›å»ºçº¿ç¨‹æ—¶åˆ›å»º
 	 */
 	private Integer num;
 
@@ -24,7 +24,7 @@ public class ThreadRunner implements Runnable {
 	public void run() {
 		System.out.println(
 				"thread:" + Thread.currentThread().getName() + ",time:" + format.format(new Date()) + ",num:" + num);
-		try {// Ê¹Ïß³ÌË¯Ãß£¬Ä£ÄâÏß³Ì×èÈûÇé¿ö
+		try {// ä½¿çº¿ç¨‹ç¡çœ ï¼Œæ¨¡æ‹Ÿçº¿ç¨‹é˜»å¡æƒ…å†µ
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

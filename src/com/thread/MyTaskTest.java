@@ -30,7 +30,7 @@ public class MyTaskTest {
 
 		es.shutdown();
 		long endTime = System.currentTimeMillis();
-		System.out.println("ÇóºÍ£º"+sum);
-		System.out.println("ºÄÊ±£º" + (endTime - startTime) + "ms");
+		System.out.println("æ±‚å’Œï¼š"+sum);
+		System.out.println("è€—æ—¶ï¼š" + (endTime - startTime) + "ms");
 	}
 }

@@ -3,7 +3,7 @@ package com.lambda;
 public interface MyActionInterface {
 	void SaySomeThing(String str);
 	
-	// jdk8ĞÂÌØĞÔ£¬½Ó¿Ú·½·¨ÓÃdeaultĞŞÊÎ¿ÉĞ´·½·¨ÄÚÈİ£¬ÊµÏÖÀàÒ²Ö±½Óµ÷ÓÃ£¬default·½·¨¿É´æÔÚ¶à¸ö
+	// jdk8æ–°ç‰¹æ€§ï¼Œæ¥å£æ–¹æ³•ç”¨deaultä¿®é¥°å¯å†™æ–¹æ³•å†…å®¹ï¼Œå®ç°ç±»ä¹Ÿç›´æ¥è°ƒç”¨ï¼Œdefaultæ–¹æ³•å¯å­˜åœ¨å¤šä¸ª
 	default void say(String str) {
 		System.out.println(str);
 	}

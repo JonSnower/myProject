@@ -19,7 +19,7 @@ public class CompleteServiceTest {
 		CompletionService<String> completionService = new ExecutorCompletionService<String>(executorService);
 
 		/**
-		 * ²úÉúÒ»¸öËæ»úÊı£¬Ä£Äâ²»Í¬µÄÈÎÎñµÄ´¦ÀíÊ±¼ä²»Í¬
+		 * äº§ç”Ÿä¸€ä¸ªéšæœºæ•°ï¼Œæ¨¡æ‹Ÿä¸åŒçš„ä»»åŠ¡çš„å¤„ç†æ—¶é—´ä¸åŒ
 		 */
 		for (int i = 0; i < 10; i++) {
 			completionService.submit(new Callable<String>() {
@@ -40,13 +40,13 @@ public class CompleteServiceTest {
 		}
 
 		/**
-		 * »ñÈ¡½á¹ûÊ±£¬×ÜÊÇÏÈÄÃµ½¶ÓÁĞÉÏÒÑ¾­´æÔÚµÄ¶ÔÏó£¬ÕâÑù²»ÓÃÒÀ´ÎµÈ´ı½á¹û ÏÔÈ»Ğ§ÂÊ¸ü¸ß
+		 * è·å–ç»“æœæ—¶ï¼Œæ€»æ˜¯å…ˆæ‹¿åˆ°é˜Ÿåˆ—ä¸Šå·²ç»å­˜åœ¨çš„å¯¹è±¡ï¼Œè¿™æ ·ä¸ç”¨ä¾æ¬¡ç­‰å¾…ç»“æœ æ˜¾ç„¶æ•ˆç‡æ›´é«˜
 		 */
 		for (int i = 0; i < 10; i++) {
 			Future<String> future = completionService.take();
 			System.out.println(future.get());
 		}
 		executorService.shutdown();
-		System.out.println("×ÜºÄÊ± £º" + (System.currentTimeMillis() - sTime));
+		System.out.println("æ€»è€—æ—¶ ï¼š" + (System.currentTimeMillis() - sTime));
 	}
 }

@@ -9,13 +9,13 @@ public class LambdaFor {
 
 		List<String> strList = Arrays.asList(strArr);
 		
-		// Ö®Ç°µÄÑ­»··½Ê½
+		// ä¹‹å‰çš„å¾ªçŽ¯æ–¹å¼
 		for (String str : strList) {
 			System.out.print(str + ";");
 		}
 		System.out.println();
 		
-		//lambda±í´ïÊ½
+		//lambdaè¡¨è¾¾å¼
 		strList.forEach((str) -> System.out.print(str + ";"));
 		System.out.println();
 		

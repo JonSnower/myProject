@@ -6,8 +6,8 @@ public class Test {
     public static void main(String[] args) throws InterruptedException {  
         String name = "";  
         String name1 = "12";  
-        System.out.println(validInput(name, inputStr -> inputStr.isEmpty() ? "名字不能为空":inputStr));  
-        System.out.println(validInput(name1, inputStr -> inputStr.length() > 3 ? "名字过长":inputStr));  
+        System.out.println(validInput(name, inputStr -> inputStr.isEmpty() ? "鍚嶅瓧涓嶈兘涓虹┖":inputStr));  
+        System.out.println(validInput(name1, inputStr -> inputStr.length() > 3 ? "鍚嶅瓧杩囬暱":inputStr));  
     }  
       
     public static String validInput(String name,Function<String,String> function) {  

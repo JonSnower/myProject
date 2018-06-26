@@ -12,7 +12,7 @@ public class MyAction {
 			@Override
 			public void SaySomeThing(String s) {
 				System.out.println(s);
-			}},"help world£¡");
+			}},"help worldï¼");
 		
 		excuteSay((item) -> System.out.println(item),"hello world!");
 	}

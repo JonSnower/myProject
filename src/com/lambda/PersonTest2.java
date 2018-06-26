@@ -24,78 +24,78 @@ public class PersonTest2 {
 		list.add(new Person("script", 10, 4000));
 		list.add(new Person("script", 10, 5000));
 
-		// ¹ıÂËÄêÁä´óÓÚ10µÄ¶ÔÏó,Filter¹ıÂË
-		System.out.println("¹ıÂË");
+		// è¿‡æ»¤å¹´é¾„å¤§äº10çš„å¯¹è±¡,Filterè¿‡æ»¤
+		System.out.println("è¿‡æ»¤");
 		Stream stream = list.stream().filter(p -> p.getAge() > 10);
 		stream.forEach(stu -> System.out.println(stu));
 
-		// °Ñperson×ª³ÉAdult,map¶ÔÔªËØ½øĞĞ²Ù×÷
-		System.out.println("person×ª³ÉAdult");
+		// æŠŠpersonè½¬æˆAdult,mapå¯¹å…ƒç´ è¿›è¡Œæ“ä½œ
+		System.out.println("personè½¬æˆAdult");
 		stream = list.stream().filter(p -> p.getAge() > 10).map(p -> new PersonAdult((Person) p));
 		stream.forEach(stu -> System.out.println(stu));
 
-		// »ñÈ¡ÆäÇ°N¸öÔªËØ£¬Èç¹ûÔ­StreamÖĞ°üº¬µÄÔªËØ¸öÊıĞ¡ÓÚN£¬ÄÇ¾Í»ñÈ¡ÆäËùÓĞµÄÔªËØ£¬limit½Ø¶Ï
-		System.out.println("lilit½Ø¶Ï");
+		// è·å–å…¶å‰Nä¸ªå…ƒç´ ï¼Œå¦‚æœåŸStreamä¸­åŒ…å«çš„å…ƒç´ ä¸ªæ•°å°äºNï¼Œé‚£å°±è·å–å…¶æ‰€æœ‰çš„å…ƒç´ ï¼Œlimitæˆªæ–­
+		System.out.println("lilitæˆªæ–­");
 		stream = list.stream().limit(2);
 		stream.forEach(stu -> System.out.println(stu));
 
-		// È¥ÖØ£¬distinct
-		System.out.println("distinctÈ¥ÖØ");
+		// å»é‡ï¼Œdistinct
+		System.out.println("distinctå»é‡");
 
-		// Èç¹ûÓÃstreamµÄdistinctĞèÒª¶Ô¶ÔÏóÖØĞ´equalsºÍhashcode·½·¨
+		// å¦‚æœç”¨streamçš„distinctéœ€è¦å¯¹å¯¹è±¡é‡å†™equalså’Œhashcodeæ–¹æ³•
 		list.stream().distinct().forEach(System.out::println);
-		// Ò²¿ÉÒÔÓÃÏÂÃæµÄ·½·¨²»ÓÃdistinct£¨ÎŞÇÖÈë£©
+		// ä¹Ÿå¯ä»¥ç”¨ä¸‹é¢çš„æ–¹æ³•ä¸ç”¨distinctï¼ˆæ— ä¾µå…¥ï¼‰
 		// list.stream().filter(distinctByKey(Person::getName)).forEach(System.out::println);
 
-		// ÒıÉê³ö¼¸¸ö¾­³£ÔÚÃæÊÔÖĞÎÊµ½µÄÎÊÌâ£º
-		// 1¡¢Á½¸ö¶ÔÏó£¬Èç¹ûa.equals(b)==true£¬ÄÇÃ´aºÍbÊÇ·ñÏàµÈ£¿
-		// ÏàµÈ£¬µ«µØÖ·²»Ò»¶¨ÏàµÈ¡£
-		// 2¡¢Á½¸ö¶ÔÏó£¬Èç¹ûhashcodeÒ»Ñù£¬ÄÇÃ´Á½¸ö¶ÔÏóÊÇ·ñÏàµÈ£¿
-		// ²»Ò»¶¨ÏàµÈ£¬ÅĞ¶ÏÁ½¸ö¶ÔÏóÊÇ·ñÏàµÈ£¬ĞèÒªÅĞ¶ÏequalsÊÇ·ñÎªtrue¡£
+		// å¼•ç”³å‡ºå‡ ä¸ªç»å¸¸åœ¨é¢è¯•ä¸­é—®åˆ°çš„é—®é¢˜ï¼š
+		// 1ã€ä¸¤ä¸ªå¯¹è±¡ï¼Œå¦‚æœa.equals(b)==trueï¼Œé‚£ä¹ˆaå’Œbæ˜¯å¦ç›¸ç­‰ï¼Ÿ
+		// ç›¸ç­‰ï¼Œä½†åœ°å€ä¸ä¸€å®šç›¸ç­‰ã€‚
+		// 2ã€ä¸¤ä¸ªå¯¹è±¡ï¼Œå¦‚æœhashcodeä¸€æ ·ï¼Œé‚£ä¹ˆä¸¤ä¸ªå¯¹è±¡æ˜¯å¦ç›¸ç­‰ï¼Ÿ
+		// ä¸ä¸€å®šç›¸ç­‰ï¼Œåˆ¤æ–­ä¸¤ä¸ªå¯¹è±¡æ˜¯å¦ç›¸ç­‰ï¼Œéœ€è¦åˆ¤æ–­equalsæ˜¯å¦ä¸ºtrueã€‚
 
-		// countÍ³¼Æ
-		System.out.println("countÍ³¼Æ£º");
+		// countç»Ÿè®¡
+		System.out.println("countç»Ÿè®¡ï¼š");
 		long num = list.stream().filter(p -> p.getAge() > 10).count();
 		System.out.println(num);
 
 		// collect
-		// ½«stram×ª³Élist
+		// å°†stramè½¬æˆlist
 		List<Person> pList = list.stream().filter(p -> p.getAge() > 10).collect(Collectors.toList());
 		pList.forEach(System.out::println);
 
-		// Ã¿¸öStream¶¼ÓĞÁ½ÖÖÄ£Ê½£ºË³ĞòÖ´ĞĞºÍ²¢ĞĞÖ´ĞĞ¡£
+		// æ¯ä¸ªStreaméƒ½æœ‰ä¸¤ç§æ¨¡å¼ï¼šé¡ºåºæ‰§è¡Œå’Œå¹¶è¡Œæ‰§è¡Œã€‚
 
-		// Ë³ĞòÁ÷£º
+		// é¡ºåºæµï¼š
 		List<Person> pe1 = list.stream().collect(Collectors.toList());
 
-		// ²¢ĞĞÁ÷£º
+		// å¹¶è¡Œæµï¼š
 		List<Person> pe2 = list.stream().parallel().collect(Collectors.toList());
 
-		// ¿ÉÒÔ¿´³ö£¬ÒªÊ¹ÓÃ²¢ĞĞÁ÷£¬Ö»ĞèÒª.parallel()¼´¿É
-		// ¹ËÃûË¼Òå£¬µ±Ê¹ÓÃË³Ğò·½Ê½È¥±éÀúÊ±£¬Ã¿¸öitem¶ÁÍêºóÔÙ¶ÁÏÂÒ»¸öitem¡£
-		// ¶øÊ¹ÓÃ²¢ĞĞÈ¥±éÀúÊ±£¬Êı×é»á±»·Ö³É¶à¸ö¶Î£¬ÆäÖĞÃ¿Ò»¸ö¶¼ÔÚ²»Í¬µÄÏß³ÌÖĞ´¦Àí£¬È»ºó½«½á¹ûÒ»ÆğÊä³ö¡£
+		// å¯ä»¥çœ‹å‡ºï¼Œè¦ä½¿ç”¨å¹¶è¡Œæµï¼Œåªéœ€è¦.parallel()å³å¯
+		// é¡¾åæ€ä¹‰ï¼Œå½“ä½¿ç”¨é¡ºåºæ–¹å¼å»éå†æ—¶ï¼Œæ¯ä¸ªitemè¯»å®Œåå†è¯»ä¸‹ä¸€ä¸ªitemã€‚
+		// è€Œä½¿ç”¨å¹¶è¡Œå»éå†æ—¶ï¼Œæ•°ç»„ä¼šè¢«åˆ†æˆå¤šä¸ªæ®µï¼Œå…¶ä¸­æ¯ä¸€ä¸ªéƒ½åœ¨ä¸åŒçš„çº¿ç¨‹ä¸­å¤„ç†ï¼Œç„¶åå°†ç»“æœä¸€èµ·è¾“å‡ºã€‚
 
-		System.out.println("¸øÄêÁä¼Ó10:");
-		// ¸Ã½Ó¿Ú±íÊ¾½ÓÊÜµ¥¸öÊäÈë²ÎÊı²¢ÇÒÃ»ÓĞ·µ»ØÖµµÄ²Ù×÷
+		System.out.println("ç»™å¹´é¾„åŠ 10:");
+		// è¯¥æ¥å£è¡¨ç¤ºæ¥å—å•ä¸ªè¾“å…¥å‚æ•°å¹¶ä¸”æ²¡æœ‰è¿”å›å€¼çš„æ“ä½œ
 		Consumer<Person> giveRaise = e -> e.setAge(e.getAge() + 10);
 		list.forEach(giveRaise);
 
 		list.forEach(System.out::println);
 
-		System.out.println("¶àfilter");
-		// Predicate ·½·¨ ±íÊ¾ ÅĞ¶Ï ÊäÈëµÄ¶ÔÏóÊÇ·ñ ·ûºÏÄ³¸öÌõ¼ş¡£
+		System.out.println("å¤šfilter");
+		// Predicate æ–¹æ³• è¡¨ç¤º åˆ¤æ–­ è¾“å…¥çš„å¯¹è±¡æ˜¯å¦ ç¬¦åˆæŸä¸ªæ¡ä»¶ã€‚
 		Predicate<Person> ageFilter = p -> p.getAge() > 20;
 		Predicate<Person> salaryFilter = p -> p.getSalary() > 1000;
 		list.stream().filter(ageFilter).filter(salaryFilter).forEach(System.out::println);
 
-		System.out.println("ÅÅĞò²Ù×÷£º");
+		System.out.println("æ’åºæ“ä½œï¼š");
 		// list.stream().sorted((p1,p2) -> p1.getSalary() -
 		// p2.getSalary()).forEach(System.out::println);
 		list.stream().sorted(Comparator.comparing(Person::getSalary)).forEach(System.out::println);
-		System.out.println("´Ó´óµ½Ğ¡£º");
+		System.out.println("ä»å¤§åˆ°å°ï¼š");
 		list.stream().sorted(Comparator.comparing(Person::getSalary).reversed()).forEach(System.out::println);
 
-		System.out.println("×î´ó×îĞ¡Öµ£º");
+		System.out.println("æœ€å¤§æœ€å°å€¼ï¼š");
 		Person p  = list.stream().max(Comparator.comparing(Person::getSalary)).get();
 		System.out.println(p);
 		

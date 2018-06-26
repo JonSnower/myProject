@@ -10,7 +10,7 @@ public class SortList {
 	
 	private static List<String> list = Arrays.asList("abc", "nba", "cba");
 
-	// 旧的写法
+	// 鏃х殑鍐欐硶
 	private static void oldSort() {
 		Collections.sort(list, new Comparator<String>() {
 			@Override
@@ -24,7 +24,7 @@ public class SortList {
 		});
 	}
 
-	// 新的写法
+	// 鏂扮殑鍐欐硶
 	private static void newSort() {
 		Collections.sort(list, (a, b) -> a.charAt(0) < b.charAt(0) ? 1 : -1);
 	}
