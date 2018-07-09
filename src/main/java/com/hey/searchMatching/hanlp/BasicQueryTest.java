@@ -25,7 +25,12 @@ public class BasicQueryTest {
     private static final Path INDEX_DIR_FILE = Paths.get("D:\\estWorkspace\\myProject001\\xxxx_index");
 
     @Test
-    public void baseSearchTest() throws IOException, ParseException {
+    public void queryTest() throws IOException, ParseException {
+    	baseSearchTest("userName","辽阔");
+    	baseSearchTest("userName","谷歌");
+    }
+    
+    public void baseSearchTest(String coloumName,String strName) throws IOException, ParseException {
         /* 索引目录对象 */
         Directory directory = FSDirectory.open(INDEX_DIR_FILE);
         /* 索引读取工具 */
@@ -38,9 +43,9 @@ public class BasicQueryTest {
         * 1.查询字段名称
         * 2.分词解析器
         * */
-        QueryParser queryParser = new QueryParser("userName", new HanLPIndexAnalyzer());
+        QueryParser queryParser = new QueryParser(coloumName, new HanLPIndexAnalyzer());
         /* 获取查询对象 */
-        Query query = queryParser.parse("中华");
+        Query query = queryParser.parse(strName);
 
         /*
         * 搜索数据
