@@ -12,6 +12,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.SortedDocValuesField;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -19,12 +20,19 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.grouping.GroupDocs;
+import org.apache.lucene.search.grouping.GroupingSearch;
+import org.apache.lucene.search.grouping.TopGroups;
 import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 import com.hankcs.lucene.HanLPIndexAnalyzer;
 
@@ -58,10 +66,12 @@ public class LuceneUtils {
 	 * 
 	 * @param tableName
 	 *            表名
+	 * @param coloumName
+	 *            字段名
 	 * @param isAppend
 	 *            追加更新或是覆盖
 	 */
-	public static void createIndex(String tableName, Boolean isAppend) {
+	public static void createIndex(String tableName, String coloumName, Boolean isAppend) {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -100,11 +110,20 @@ public class LuceneUtils {
 						IndexableField idField = new StringField("id", id, Store.YES);
 						document.add(idField);
 					}
+					
+					String province = rs.getString("province");
+					if (province != null) {
+						// 需要做group分组处理需要用SortedDocValuesField
+						// IndexableField provinceField = new StringField("province", province, Store.YES);
+						IndexableField provinceField = new SortedDocValuesField("province",new BytesRef(province));
+						document.add(provinceField);
+					}
 
 					// TextField需要做分词处理
-					String name = rs.getString("name");
+					String name = rs.getString(coloumName);
 					if (name != null) {
-						IndexableField sectionNameField = new TextField("userName", name, Store.YES);
+						
+						IndexableField sectionNameField = new SortedDocValuesField("name", new BytesRef(name));
 						document.add(sectionNameField);
 					}
 
@@ -112,6 +131,7 @@ public class LuceneUtils {
 
 				}
 				indexWriter.commit();
+				indexWriter.close();
 
 				System.out.println("=====创建索引成功=====");
 			} catch (Exception e) {
@@ -156,6 +176,33 @@ public class LuceneUtils {
 		System.out.println("=====更新索引成功=====");
 	}
 
+
+	public static void queryGroupByColoumName(String coloumName) throws IOException, ParseException {
+
+		DirectoryReader directoryReader = DirectoryReader.open(directory);
+		IndexSearcher indexSearcher = new IndexSearcher(directoryReader);
+		
+		// 如果要根据某个field分组，这个field必须为SortedDocValuesField类型
+		GroupingSearch groupingSearch = new GroupingSearch("province");
+		
+		SortField sortField = new SortField("name", SortField.Type.STRING_VAL);
+		Sort sort = new Sort(sortField);
+		groupingSearch.setGroupSort(sort);
+		groupingSearch.setFillSortFields(true);
+		groupingSearch.setCachingInMB(4.0, true);
+		groupingSearch.setAllGroups(true);
+
+		Query query = new MatchAllDocsQuery();
+		TopGroups<BytesRef> result = groupingSearch.search(indexSearcher,query, 0, indexSearcher.getIndexReader().maxDoc());
+		
+		GroupDocs<BytesRef>[] docs = result.groups;
+		for (GroupDocs<BytesRef> groupDocs : docs) {
+			System.out.println(new String(groupDocs.groupValue.bytes));
+		}
+		int totalGroupCount = result.totalGroupCount;
+		System.out.println(totalGroupCount);
+	}
+	
 	/**
 	 * 根据字段名称，查找数据
 	 * 

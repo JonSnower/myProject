@@ -6,10 +6,15 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.Test;
 
 public class LuceneTest {
+	
+	@Test
+	public void test() throws IOException, ParseException {
+		LuceneUtils.queryGroupByColoumName("province");
+	}
 
 	@Test
 	public void createIndex() {
-		LuceneUtils.createIndex("user_info", false);
+		LuceneUtils.createIndex("student_info", "name", false);
 		// LuceneUtils.createIndex("student_info", true);
 	}
 
@@ -37,26 +42,25 @@ public class LuceneTest {
 	public void deleteIndexById() throws IOException {
 		LuceneUtils.deleteIndexById("table_id_104");
 	}
-	
+
 	@Test
 	public void query4() throws IOException, ParseException {
 		LuceneUtils.queryByColoumName("userName", "谷歌");
 	}
-	
+
 	@Test
 	public void query5() throws IOException, ParseException {
 		LuceneUtils.queryByColoumName("userName", "中华");
 	}
-	
+
 	@Test
 	public void deleteIndexByTable() throws IOException {
 		LuceneUtils.deleteIndexByTable("user_info");
 	}
-	
+
 	@Test
 	public void query6() throws IOException, ParseException {
 		LuceneUtils.queryByColoumName("userName", "中华");
 	}
-	
-	
+
 }

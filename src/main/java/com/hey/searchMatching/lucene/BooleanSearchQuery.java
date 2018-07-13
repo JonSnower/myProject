@@ -37,7 +37,7 @@ public class BooleanSearchQuery {
 		// 定义Term集合
 		List<Term> termList = new ArrayList<Term>();
 
-		List<String> analyseResult = getAnalyseResult("", new HanLPAnalyzer());
+		List<String> analyseResult = getAnalyseResult("中华", new HanLPAnalyzer());
 		analyseResult.forEach(result -> {
 			termList.add(new Term("userName", result));
 		});
