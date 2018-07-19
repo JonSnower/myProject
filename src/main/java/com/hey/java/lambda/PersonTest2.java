@@ -33,6 +33,12 @@ public class PersonTest2 {
 		System.out.println("person转成Adult");
 		stream = list.stream().filter(p -> p.getAge() > 10).map(p -> new PersonAdult((Person) p));
 		stream.forEach(stu -> System.out.println(stu));
+		
+		// map的使用
+		System.out.println("map的使用");
+		stream = list.stream().map(p -> p.getAge()).distinct();
+		stream.forEach(p -> System.out.println(p));
+		
 
 		// 获取其前N个元素，如果原Stream中包含的元素个数小于N，那就获取其所有的元素，limit截断
 		System.out.println("lilit截断");

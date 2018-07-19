@@ -6,10 +6,45 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.Test;
 
 public class LuceneTest {
-	
+
+	/*
+	 * 分组查询
+	 */
 	@Test
-	public void test() throws IOException, ParseException {
+	public void query001() throws IOException, ParseException {
 		LuceneUtils.queryGroupByColoumName("province");
+	}
+
+	/*
+	 * 糊糊查询
+	 */
+	@Test
+	public void query002() throws IOException, ParseException {
+		LuceneUtils.queryByColoumName("name", "深圳");
+	}
+
+	/*
+	 * 精准查询
+	 */
+	@Test
+	public void query003() throws IOException, ParseException {
+		LuceneUtils.queryTermByColoumName("name", "深圳");
+	}
+	
+	/*
+	 * 精准查询，用于分组字段测试
+	 */
+	@Test
+	public void query0031() throws IOException, ParseException {
+		LuceneUtils.queryTermByColoumName("province", "广东");
+	}
+
+	/*
+	 * 查询 所有数据
+	 */
+	@Test
+	public void query004() throws IOException, ParseException {
+		LuceneUtils.queryAll();
 	}
 
 	@Test
