@@ -7,6 +7,11 @@ import org.junit.Test;
 
 public class LuceneTest {
 
+	@Test
+	public void create() throws IOException, ParseException {
+		LuceneUtils.createIndex("student_info", "name", false);
+	}
+	
 	/*
 	 * 分组查询
 	 */

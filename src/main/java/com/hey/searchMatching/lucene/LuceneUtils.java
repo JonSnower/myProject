@@ -50,7 +50,7 @@ import com.hankcs.lucene.HanLPIndexAnalyzer;
  */
 public class LuceneUtils {
 
-	private static final String FILE_PATH = "xxxx_index";
+	private static final String FILE_PATH = "lucene_index";
 
 	private static IndexWriter indexWriter = null;
 
